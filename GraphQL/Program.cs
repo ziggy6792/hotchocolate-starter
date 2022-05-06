@@ -1,5 +1,6 @@
 using ConferencePlanner.GraphQL;
 using ConferencePlanner.GraphQL.Data;
+using ConferencePlanner.GraphQL.DataLoader;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,8 @@ builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(options => opti
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddMutationType<Mutation>();
+    .AddMutationType<Mutation>()
+    .AddDataLoader<SpeakerByIdDataLoader>();
 
 var app = builder.Build();
 
