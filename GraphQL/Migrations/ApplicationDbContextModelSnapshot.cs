@@ -23,7 +23,6 @@ namespace GraphQL.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
@@ -33,7 +32,6 @@ namespace GraphQL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WebSite")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
