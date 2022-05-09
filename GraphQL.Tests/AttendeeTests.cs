@@ -27,9 +27,9 @@ namespace GraphQL.Tests
           .AddPooledDbContextFactory<ApplicationDbContext>(
               options => options.UseInMemoryDatabase("Data Source=conferences.db"))
           .AddGraphQL()
-          .AddQueryType(d => d.Name("Query"))
+          .AddQueryType<Query>()
               .AddTypeExtension<AttendeeQueries>()
-          .AddMutationType(d => d.Name("Mutation"))
+          .AddMutationType<Mutation>()
               .AddTypeExtension<AttendeeMutations>()
           .AddType<AttendeeType>()
           .AddType<SessionType>()
@@ -41,5 +41,48 @@ namespace GraphQL.Tests
       // assert
       schema.Print().MatchSnapshot();
     }
+
+    [Fact]
+    public async Task RegisterAttendee()
+    {
+      // arrange
+      IRequestExecutor executor = await new ServiceCollection()
+          .AddPooledDbContextFactory<ApplicationDbContext>(
+              options => options.UseInMemoryDatabase("Data Source=conferences.db"))
+          .AddGraphQL()
+          .AddQueryType<Query>()
+              .AddTypeExtension<AttendeeQueries>()
+          .AddMutationType<Mutation>()
+              .AddTypeExtension<AttendeeMutations>()
+          .AddType<AttendeeType>()
+          .AddType<SessionType>()
+          .AddType<SpeakerType>()
+          .AddType<TrackType>()
+          .EnableRelaySupport()
+          .BuildRequestExecutorAsync();
+
+      // act
+      IExecutionResult result = await executor.ExecuteAsync(@"
+        mutation RegisterAttendee {
+            registerAttendee(
+                input: {
+                    emailAddress: ""michael@chillicream.com""
+                        firstName: ""michael""
+                        lastName: ""staib""
+                        userName: ""michael3""
+                    })
+            {
+                attendee {
+                    id
+                }
+            }
+        }");
+
+      // assert
+      result.ToJson().MatchSnapshot();
+    }
+
   }
+
+
 }
