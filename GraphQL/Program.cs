@@ -1,4 +1,5 @@
 using ConferencePlanner.GraphQL;
+using ConferencePlanner.GraphQL.Attendees;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
 using ConferencePlanner.GraphQL.Sessions;
@@ -20,6 +21,7 @@ builder.Services
         .AddTypeExtension<SessionQueries>()
         .AddTypeExtension<TrackQueries>()
     .AddMutationType<Mutation>()
+       .AddTypeExtension<AttendeeMutations>()
         .AddTypeExtension<SpeakerMutations>()
         .AddTypeExtension<SessionMutations>()
         .AddTypeExtension<TrackMutations>()
@@ -37,6 +39,7 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseWebSockets();
 app.UseRouting();
 
 app.UseEndpoints(endpoints =>
