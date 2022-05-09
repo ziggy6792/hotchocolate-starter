@@ -8,6 +8,7 @@ using HotChocolate;
 using HotChocolate.Types;
 using HotChocolate.Types.Relay;
 using ConferencePlanner.GraphQL.Types;
+using HotChocolate.Data;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
@@ -16,6 +17,8 @@ namespace ConferencePlanner.GraphQL.Sessions
   {
     [UseApplicationDbContext]
     [UsePaging(typeof(NonNullType<SessionType>))]
+    [UseFiltering]
+    [UseSorting]
     public IQueryable<Session> GetSessions(
     [ScopedService] ApplicationDbContext context) =>
     context.Sessions;

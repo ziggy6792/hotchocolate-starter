@@ -30,7 +30,10 @@ builder.Services
      .AddGlobalObjectIdentification()
      .AddQueryFieldToMutationPayloads()
     .AddDataLoader<SpeakerByIdDataLoader>()
-    .AddDataLoader<SessionByIdDataLoader>();
+    .AddDataLoader<SessionByIdDataLoader>()
+    .AddFiltering()
+   .AddSorting();
+
 
 var app = builder.Build();
 
