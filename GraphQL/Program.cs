@@ -14,6 +14,7 @@ builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(options => opti
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
+        .AddTypeExtension<SpeakerQueries>()
     .AddMutationType(d => d.Name("Mutation"))
         .AddTypeExtension<SpeakerMutations>()
     .AddType<SpeakerType>()

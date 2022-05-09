@@ -9,11 +9,11 @@ using GreenDonut;
 
 namespace ConferencePlanner.GraphQL.DataLoader
 {
-  public class SpeakerByIdDataLoader : BatchDataLoader<int, Speaker>
+  public class TrackByIdDataLoader : BatchDataLoader<int, Track>
   {
     private readonly IDbContextFactory<ApplicationDbContext> _dbContextFactory;
 
-    public SpeakerByIdDataLoader(
+    public TrackByIdDataLoader(
         IBatchScheduler batchScheduler,
         IDbContextFactory<ApplicationDbContext> dbContextFactory)
         : base(batchScheduler)
@@ -22,14 +22,14 @@ namespace ConferencePlanner.GraphQL.DataLoader
           throw new ArgumentNullException(nameof(dbContextFactory));
     }
 
-    protected override async Task<IReadOnlyDictionary<int, Speaker>> LoadBatchAsync(
+    protected override async Task<IReadOnlyDictionary<int, Track>> LoadBatchAsync(
         IReadOnlyList<int> keys,
         CancellationToken cancellationToken)
     {
       await using ApplicationDbContext dbContext =
           _dbContextFactory.CreateDbContext();
 
-      return await dbContext.Speakers
+      return await dbContext.Tracks
           .Where(s => keys.Contains(s.Id))
           .ToDictionaryAsync(t => t.Id, cancellationToken);
     }

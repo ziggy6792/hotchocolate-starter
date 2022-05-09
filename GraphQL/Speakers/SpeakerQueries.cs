@@ -10,7 +10,7 @@ using HotChocolate.Types.Relay;
 
 namespace ConferencePlanner.GraphQL.Speakers
 {
-  [ExtendObjectType(Name = "Query")]
+  [ExtendObjectType(typeof(Query))]
   public class SpeakerQueries
   {
     [UseApplicationDbContext]
