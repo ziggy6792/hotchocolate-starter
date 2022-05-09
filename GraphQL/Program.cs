@@ -26,6 +26,8 @@ builder.Services
         .AddTypeExtension<SessionMutations>()
         .AddTypeExtension<TrackMutations>()
          .AddType<AttendeeType>()
+    .AddSubscriptionType<Subscription>()
+     .AddTypeExtension<SessionSubscriptions>()
     .AddType<SessionType>()
     .AddType<TrackType>()
     .AddType<SpeakerType>()
@@ -34,7 +36,8 @@ builder.Services
     .AddDataLoader<SpeakerByIdDataLoader>()
     .AddDataLoader<SessionByIdDataLoader>()
     .AddFiltering()
-   .AddSorting();
+   .AddSorting()
+   .AddInMemorySubscriptions();
 
 
 var app = builder.Build();
