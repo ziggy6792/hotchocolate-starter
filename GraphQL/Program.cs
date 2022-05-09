@@ -15,7 +15,7 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
         .AddTypeExtension<SpeakerQueries>()
-    .AddMutationType(d => d.Name("Mutation"))
+    .AddMutationType<Mutation>()
         .AddTypeExtension<SpeakerMutations>()
     .AddType<SpeakerType>()
      .AddGlobalObjectIdentification()
