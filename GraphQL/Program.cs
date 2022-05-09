@@ -17,6 +17,8 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
         .AddTypeExtension<SpeakerQueries>()
+        .AddTypeExtension<SessionQueries>()
+        .AddTypeExtension<TrackQueries>()
     .AddMutationType<Mutation>()
         .AddTypeExtension<SpeakerMutations>()
         .AddTypeExtension<SessionMutations>()
