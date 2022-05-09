@@ -27,6 +27,7 @@ builder.Services
         .AddTypeExtension<TrackMutations>()
          .AddType<AttendeeType>()
     .AddSubscriptionType<Subscription>()
+     .AddTypeExtension<AttendeeSubscriptions>()
      .AddTypeExtension<SessionSubscriptions>()
     .AddType<SessionType>()
     .AddType<TrackType>()
