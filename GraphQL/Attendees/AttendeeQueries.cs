@@ -19,6 +19,7 @@ namespace ConferencePlanner.GraphQL.Attendees
         [ScopedService] ApplicationDbContext context) =>
         context.Attendees;
 
+
     public Task<Attendee> GetAttendeeByIdAsync(
         [ID(nameof(Attendee))] int id,
         AttendeeByIdDataLoader attendeeById,

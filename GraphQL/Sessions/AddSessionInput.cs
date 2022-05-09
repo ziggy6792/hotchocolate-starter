@@ -4,9 +4,9 @@ using HotChocolate.Types.Relay;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
-    public record AddSessionInput(
-        string Title,
-        string? Abstract,
-        [ID(nameof(Speaker))]
+  public record AddSessionInput(
+      string Title,
+      string? Abstract,
+      [property: ID]
         IReadOnlyList<int> SpeakerIds);
 }

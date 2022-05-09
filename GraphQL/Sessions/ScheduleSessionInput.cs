@@ -4,11 +4,11 @@ using HotChocolate.Types.Relay;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
-    public record ScheduleSessionInput(
-        [ID(nameof(Session))]
+  public record ScheduleSessionInput(
+      [property: ID]
         int SessionId,
-        [ID(nameof(Track))]
+      [property: ID]
         int TrackId,
-        DateTimeOffset StartTime,
-        DateTimeOffset EndTime);
+      DateTimeOffset StartTime,
+      DateTimeOffset EndTime);
 }
