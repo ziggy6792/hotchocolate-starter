@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphQL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220506091743_Refactoring")]
-    partial class Refactoring
+    [Migration("20220509064212_Refactoring2")]
+    partial class Refactoring2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
