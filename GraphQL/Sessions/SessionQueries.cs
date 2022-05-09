@@ -17,11 +17,11 @@ namespace ConferencePlanner.GraphQL.Sessions
   {
     [UseApplicationDbContext]
     [UsePaging(typeof(NonNullType<SessionType>))]
-    [UseFiltering]
+    [UseFiltering(typeof(SessionFilterInputType))]
     [UseSorting]
     public IQueryable<Session> GetSessions(
-    [ScopedService] ApplicationDbContext context) =>
-    context.Sessions;
+         [ScopedService] ApplicationDbContext context) =>
+          context.Sessions;
 
     public Task<Session> GetSessionByIdAsync(
         [ID(nameof(Session))] int id,
