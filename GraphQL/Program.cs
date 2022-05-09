@@ -17,6 +17,8 @@ builder.Services
     .AddMutationType(d => d.Name("Mutation"))
         .AddTypeExtension<SpeakerMutations>()
     .AddType<SpeakerType>()
+    //  .AddGlobalObjectIdentification()
+    //  .AddQueryFieldToMutationPayloads()
     .AddDataLoader<SpeakerByIdDataLoader>()
     .AddDataLoader<SessionByIdDataLoader>();
 
