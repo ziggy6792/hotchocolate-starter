@@ -22,11 +22,11 @@ namespace ConferencePlanner.GraphQL.Types
               ctx.DataLoader<TrackByIdDataLoader>().LoadAsync(id, ctx.RequestAborted));
 
       descriptor
-          .Field(t => t.Sessions)
-          .ResolveWith<TrackResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
-          .UseDbContext<ApplicationDbContext>()
-          .UsePaging<NonNullType<SessionType>>()
-          .Name("sessions");
+         .Field(t => t.Sessions)
+         .ResolveWith<TrackResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
+         .UseDbContext<ApplicationDbContext>()
+         .UsePaging<NonNullType<SessionType>>()
+         .Name("sessions");
 
       descriptor
         .Field(t => t.Name)
@@ -37,7 +37,7 @@ namespace ConferencePlanner.GraphQL.Types
     private class TrackResolvers
     {
       public async Task<IEnumerable<Session>> GetSessionsAsync(
-          Track track,
+          [Parent] Track track,
           [ScopedService] ApplicationDbContext dbContext,
           SessionByIdDataLoader sessionById,
           CancellationToken cancellationToken)
