@@ -1,7 +1,6 @@
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
 using HotChocolate;
-using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Types;
 using HotChocolate.Types.Relay;
 
@@ -12,7 +11,6 @@ public class SpeakerQueries
 {
     [UseApplicationDbContext]
     [UsePaging]
-    [Authorize]
     public IQueryable<Speaker> GetSpeakers(
         [ScopedService] ApplicationDbContext context)
     {

@@ -23,6 +23,7 @@ var signingKey = new SymmetricSecurityKey(
     Encoding.UTF8.GetBytes("MySuperSecretKey"));
 
 builder.Services
+    .AddAuthorization()
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -71,8 +72,9 @@ app.UseWebSockets();
 app.UseRouting();
 
 app.UseAuthentication();
+app.UseAuthorization();
 
 
-app.UseEndpoints(endpoints => { endpoints.MapGraphQL(); });
+app.UseEndpoints(endpoints => { endpoints.MapGraphQL().RequireAuthorization(); });
 
 app.Run();
