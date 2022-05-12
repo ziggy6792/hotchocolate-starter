@@ -74,7 +74,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
+// How to allow introspection queries
 app.UseEndpoints(endpoints => { endpoints.MapGraphQL().RequireAuthorization(); });
 
 app.Run();
